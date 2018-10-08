@@ -3,12 +3,17 @@ import logo from './logo.svg';
 import './App.css';
 import './assets/css/new-age.min.css';
 import './assets/device-mockups/device-mockups.min.css';
+import scrollToComponent from 'react-scroll-to-component';
 
 class App extends Component {
 
-  onCliskSCroll = (param) => {
-    // let element = document.getElementById(param)
-    // element.scrollIntoView()
+  // onCliskSCroll = (param) => {
+  //   // let element = document.getElementById(param)
+  //   // element.scrollIntoView()
+  // }
+
+  componentDidMount() {
+    scrollToComponent(this.Blue, { offset: 0, align: 'middle', duration: 500, ease:'inCirc'});
   }
 
   render() {
@@ -24,13 +29,13 @@ class App extends Component {
         <div className="collapse navbar-collapse" id="navbarResponsive">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a className="nav-link js-scroll-trigger" href="#download" onClick={() => this.onCliskSCroll('#download')}>Download</a>
+              <a className="nav-link js-scroll-trigger" href="#download" onClick={() => scrollToComponent(this.Download, { offset: 0, align: 'top', duration: 1500})}>Download</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link js-scroll-trigger" href="#features" onClick={() => this.onCliskSCroll('#features')}>Features</a>
+              <a className="nav-link js-scroll-trigger" href="#features" onClick={() => scrollToComponent(this.Features, { offset: 0, align: 'top', duration: 1500})}>Features</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link js-scroll-trigger" href="#contact" onClick={() => this.onCliskSCroll('#contact')}>Contact</a>
+              <a className="nav-link js-scroll-trigger" href="#contact" onClick={() => scrollToComponent(this.Contact, { offset: 0, align: 'top', duration: 1500})}>Contact</a>
             </li>
           </ul>
         </div>
@@ -63,7 +68,7 @@ class App extends Component {
       </div>
     </header>
 
-    <section className="download bg-primary text-center" id="download">
+    <section className="download bg-primary text-center" ref={(section) => { this.Download = section; }}>
       <div className="container">
         <div className="row">
           <div className="col-md-8 mx-auto">
@@ -83,7 +88,7 @@ class App extends Component {
       </div>
     </section>
 
-    <section className="features" id="features">
+    <section className="features" ref={(section) => { this.Features = section; }}>
       <div className="container">
         <div className="section-heading text-center">
           <h2>Unlimited Features, Unlimited Fun</h2>
@@ -158,7 +163,7 @@ class App extends Component {
       <div className="overlay"></div>
     </section>
 
-    <section className="contact bg-primary" id="contact">
+    <section className="contact bg-primary" ref={(section) => { this.Contact = section; }}>
       <div className="container">
         <h2>We
           <i className="fas fa-heart"></i>
